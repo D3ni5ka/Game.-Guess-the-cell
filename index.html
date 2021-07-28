@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра. Угадай ячейку.</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <h2>У Вас 10 секунд чтобы найти ячейку!</h2>
+
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <script>
+        'use strict';
+
+
+
+        let timer = 10;
+
+        let timerOut = document.createElement('p');
+        document.body.appendChild(timerOut);
+
+
+        let elems = document.querySelectorAll('td');
+        console.log(elems.length)
+        let randonNum = Math.floor(Math.random() * elems.length); // рандомное число
+        console.log(randonNum);
+        for (let i = 0; i < elems.length; i++) {
+            if (randonNum == i) {
+                elems[i].addEventListener('click', function func() {
+                    alert('Вы выиграли!');
+                    elems[i].style.background = 'red';
+
+                    clearInterval(gameOver);
+
+                })
+            } else {
+                elems[i].addEventListener('click', function () {
+                    console.log('Мимо!');
+                    console.log(i)
+                    elems[i].style.background = 'green';
+                })
+            }
+        }
+
+
+        let gameOver = setInterval((event) => {
+            --timer;
+            timerOut.innerHTML = timer;
+            if (timer == 0) {
+                clearInterval(gameOver);
+                alert('Вы проиграли!');
+                let newGame = confirm('Начать заново?');
+                if(newGame == true) {
+                    location.reload();
+                } else {
+                    alert('Очень жаль. До свидания!')
+                }
+            }
+        }, 1000);
+
+
+
+    </script>
+</body>
+
+</html>
